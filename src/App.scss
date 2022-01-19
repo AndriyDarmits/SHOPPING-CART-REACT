@@ -1,0 +1,42 @@
+
+.store__container{
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.store__inner{
+    h1{
+        text-align: center;
+    }
+}
+
+.store__flexbox{
+    display: flex;
+    justify-content: space-between;
+    .shopping__cart{
+        width: 49%;
+        
+
+    .shoppingCart__items{
+        
+        .shoppingCart__item{
+            border: 1px solid #000;
+            margin-bottom: 10px;
+        }
+    }
+        
+    }
+
+    .product__items{
+        width: 49%;
+    }
+    
+}
+
+.product__item{
+    border: 1px solid #000;
+    margin-bottom: 10px;
+}
+
+
