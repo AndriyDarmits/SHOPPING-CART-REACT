@@ -8,11 +8,25 @@ export default class ShoppingCart extends Component {
     constructor(props) {
         super(props);
         this.onDeleteProduct = this.onDeleteProduct.bind(this)
-
+        this.onDecrementCount = this.onDecrementCount.bind(this)
+        this.onIncrementCount = this.onIncrementCount.bind(this)
+        this.clearAll = this.clearAll.bind(this)
     }
 
     onDeleteProduct(deleteProduct) {
         this.props.onDeleteProduct(deleteProduct)
+    }
+    onDecrementCount(dectementedProduct) {
+        this.props.onDecrementCount(dectementedProduct)
+    }
+    onIncrementCount(incrementedProduct) {
+        this.props.onIncrementCount(incrementedProduct)
+    }
+
+
+    clearAll() {
+        const bul = true;
+        this.props.onClearAll(bul)
     }
 
 
@@ -20,10 +34,18 @@ export default class ShoppingCart extends Component {
         return (
             <div className="shopping__cart">
                 <h2>Shopping Cart</h2>
-                <div className="shoppingCart__items" >
-                    {this.props.shoppingCartItems.length ? this.props.shoppingCartItems.map((product) => <ShoppingCartItems product={product} onDeleteProduct={this.onDeleteProduct} />) : <div>The shopping cart is empty...</div>}
+                < div className="shoppingCart__items" >
+                    {this.props.shoppingCartItems.length ?
+                        <>{this.props.shoppingCartItems.map((product) => <ShoppingCartItems product={product} onDeleteProduct={this.onDeleteProduct}
+                            onDecrementCount={this.onDecrementCount} onIncrementCount={this.onIncrementCount} />
+                        )}
+                            <div >
+                                <button onClick={this.clearAll}>Clear all</button>
+                            </div></>
+                        :
+                        <div>The shopping cart is empty...</div>}
                 </div>
-            </div>
+            </div >
         )
     }
 }

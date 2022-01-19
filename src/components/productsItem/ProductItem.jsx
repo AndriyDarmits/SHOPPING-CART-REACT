@@ -8,8 +8,11 @@ export default class ProductItem extends Component {
 
 
     addGoodsToCart(e) {
+
         this.props.addGoodsToCart(this.props.product.id)
     }
+
+
     render() {
 
 
@@ -17,7 +20,9 @@ export default class ProductItem extends Component {
             <div className="product__item">
                 <p>Name: {this.props.product.name}</p>
                 <p>Price: {this.props.product.price} грн.</p>
-                <button onClick={this.addGoodsToCart}>Buy</button>
+                {this.props.product.isInShoppingCart ?
+                    <p>В корзині</p> :
+                    <button onClick={this.addGoodsToCart}>Buy</button>}
             </div>
 
         );

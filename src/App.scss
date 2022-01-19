@@ -39,4 +39,19 @@
     margin-bottom: 10px;
 }
 
+.shoppingCart__item{
+
+    &--inc,
+    &--dec{
+        cursor: pointer;
+    }
+    p{
+
+        
+        span{
+            font-size: 18px;
+        }
+    }
+}
+
 
