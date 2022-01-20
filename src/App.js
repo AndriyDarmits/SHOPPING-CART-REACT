@@ -24,19 +24,24 @@ export default class App extends Component {
 
   // receiving data from API
   componentDidMount() {
-    fetch('https://mocki.io/v1/340bde2d-db93-4a5e-b96c-291f94eda6ff')
+    fetch('https://api.ifcityevent.com/products')
       .then(response => response.json())
-      .then(response => this.setState({ products: response }))
+      .then(response => this.setState({
+        products: response.map(item => {
+          return { ...item, isInShoppingCart: false, count: 1 }
+        })
+      }))
   }
 
   componentDidUpdate() {
-
+    // something has to be updated here
   }
 
   // adding goods to shopping cart
   addGoodsToCart(id) {
     const productInCart = this.state.products.map(product => {
       if (product.id === id) {
+        // set true, if product is in shopping cart
         product.isInShoppingCart = true;
 
       }
@@ -56,6 +61,7 @@ export default class App extends Component {
     const changedShoppingCart = this.state.shoppingCart.filter(product => product.id !== deleteProduct.id);
     const productOutOfShoppingCart = this.state.products.map(product => {
       if (product.id === deleteProduct.id) {
+        // set false, if product isn`t in shopping cart
         product.isInShoppingCart = false
       }
       return product
@@ -66,9 +72,8 @@ export default class App extends Component {
       shoppingCart: changedShoppingCart,
     })
   }
-
+  // decrementing quantity
   onDecrementCount(decrementedProduct) {
-
     const decrementCount = this.state.shoppingCart.map(shoppingCartProduct => {
       if (shoppingCartProduct.id === decrementedProduct.id) {
         if (shoppingCartProduct.count <= 1) {
@@ -87,6 +92,7 @@ export default class App extends Component {
     })
   }
 
+  // incrementing quantity
   onIncrementCount(incrementedProduct) {
     const incrementCount = this.state.shoppingCart.map(shoppingCartProduct => {
       if (shoppingCartProduct.id === incrementedProduct.id) {
@@ -102,6 +108,7 @@ export default class App extends Component {
 
   }
 
+  // deleting all goods from shoppingCart
   onClearAll(isClearAll) {
 
     if (isClearAll) {

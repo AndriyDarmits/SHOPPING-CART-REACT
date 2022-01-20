@@ -25,8 +25,7 @@ export default class ShoppingCart extends Component {
 
 
     clearAll() {
-        const bul = true;
-        this.props.onClearAll(bul)
+        this.props.onClearAll(true)
     }
 
 
@@ -40,7 +39,11 @@ export default class ShoppingCart extends Component {
                             onDecrementCount={this.onDecrementCount} onIncrementCount={this.onIncrementCount} />
                         )}
                             <div >
-                                <button onClick={this.clearAll}>Clear all</button>
+                                <button className="clearAll__btn" onClick={this.clearAll}>Clear all</button>
+
+                                <span>Total:{(this.props.shoppingCartItems.reduce((productPrev, productCurrent) => {
+                                    return productPrev + productCurrent.price
+                                }, 0)).toFixed(2)} uah.</span>
                             </div></>
                         :
                         <div>The shopping cart is empty...</div>}

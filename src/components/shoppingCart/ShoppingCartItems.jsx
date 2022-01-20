@@ -26,10 +26,10 @@ export default class ShoppingCartItems extends Component {
 
             <div className="shoppingCart__item">
                 <p>Name: {this.props.product.name}</p>
-                <p>Price: {this.props.product.price} грн.</p>
+                <p>Price: {this.props.product.price} uah.</p>
                 <p>Quantity:
                     <span className="shoppingCart__item--dec" onClick={this.decrementCount}>&#x2212;</span>
-                    <span>[ {this.props.product.count} ]</span>
+                    <span>( {this.props.product.count} )</span>
                     <span className="shoppingCart__item--inc" onClick={this.incrementCount}>&#43;</span></p>
                 <button onClick={this.deleteProduct}>Remove</button>
             </div>

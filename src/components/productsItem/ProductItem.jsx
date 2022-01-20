@@ -6,25 +6,19 @@ export default class ProductItem extends Component {
         this.addGoodsToCart = this.addGoodsToCart.bind(this);
     }
 
-
     addGoodsToCart(e) {
-
         this.props.addGoodsToCart(this.props.product.id)
     }
 
-
     render() {
-
-
         return (
             <div className="product__item">
                 <p>Name: {this.props.product.name}</p>
-                <p>Price: {this.props.product.price} грн.</p>
+                <p>Price: {this.props.product.price} uah.</p>
                 {this.props.product.isInShoppingCart ?
-                    <p>В корзині</p> :
+                    <p>In the shopping cart=)</p> :
                     <button onClick={this.addGoodsToCart}>Buy</button>}
             </div>
-
         );
     }
 }
