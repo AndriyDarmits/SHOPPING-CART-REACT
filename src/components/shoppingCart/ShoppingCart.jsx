@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ProductItems from '../productsItem/ProductItems';
 import ShoppingCartItems from './ShoppingCartItems';
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export default class ShoppingCart extends Component {
@@ -38,9 +40,10 @@ export default class ShoppingCart extends Component {
                         <>{this.props.shoppingCartItems.map((product) => <ShoppingCartItems product={product} onDeleteProduct={this.onDeleteProduct}
                             onDecrementCount={this.onDecrementCount} onIncrementCount={this.onIncrementCount} />
                         )}
-                            <div >
-                                <button className="clearAll__btn" onClick={this.clearAll}>Clear all</button>
-
+                            <div className="productsAmount" >
+                                <Button variant="contained" startIcon={<DeleteIcon />} onClick={this.clearAll} size="small">
+                                    Clear all
+                                </Button>
                                 <span>Total:{(this.props.shoppingCartItems.reduce((productPrev, productCurrent) => {
                                     return productPrev + productCurrent.price
                                 }, 0)).toFixed(2)} uah.</span>

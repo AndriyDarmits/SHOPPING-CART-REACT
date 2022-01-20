@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import IconButton from '@mui/material/IconButton';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 
 export default class ProductItem extends Component {
     constructor(props) {
@@ -17,7 +20,9 @@ export default class ProductItem extends Component {
                 <p>Price: {this.props.product.price} uah.</p>
                 {this.props.product.isInShoppingCart ?
                     <p>In the shopping cart=)</p> :
-                    <button onClick={this.addGoodsToCart}>Buy</button>}
+                    <IconButton onClick={this.addGoodsToCart} color="primary" aria-label="add to shopping cart">
+                        <AddShoppingCartIcon />
+                    </IconButton>}
             </div>
         );
     }

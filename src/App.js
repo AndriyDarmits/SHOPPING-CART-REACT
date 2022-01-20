@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.scss';
+import Button from '@mui/material/Button';
 import ProductItems from './components/productsItem/ProductItems';
 import ShoppingCart from './components/shoppingCart/ShoppingCart';
 
@@ -56,6 +57,7 @@ export default class App extends Component {
     })
 
   }
+
   // deleting goods to shopping cart
   onDeleteProduct(deleteProduct) {
     const changedShoppingCart = this.state.shoppingCart.filter(product => product.id !== deleteProduct.id);
@@ -72,6 +74,8 @@ export default class App extends Component {
       shoppingCart: changedShoppingCart,
     })
   }
+
+  // !! А ТУТ ПРОБЛЕМКА, ЧОМУСЬ ( COUNT ) ОНОВЛЮЄТЬСЯ І В STATE.PRODUCTS, I В SHOPPINGCART (НЕ РОЗУМІЮ ЧОМУ) 
   // decrementing quantity
   onDecrementCount(decrementedProduct) {
     const decrementCount = this.state.shoppingCart.map(shoppingCartProduct => {
@@ -79,7 +83,7 @@ export default class App extends Component {
         if (shoppingCartProduct.count <= 1) {
           shoppingCartProduct.count = 1;
         } else {
-          shoppingCartProduct.count--;
+          shoppingCartProduct.count = shoppingCartProduct.count - 1;
         }
 
       }
@@ -91,12 +95,12 @@ export default class App extends Component {
       shoppingCart: decrementCount
     })
   }
-
+  // !! А ТУТ ПРОБЛЕМКА, ЧОМУСЬ ( COUNT ) ОНОВЛЮЄТЬСЯ І В STATE.PRODUCTS, I В SHOPPINGCART (НЕ РОЗУМІЮ ЧОМУ)
   // incrementing quantity
   onIncrementCount(incrementedProduct) {
     const incrementCount = this.state.shoppingCart.map(shoppingCartProduct => {
       if (shoppingCartProduct.id === incrementedProduct.id) {
-        shoppingCartProduct.count++;
+        shoppingCartProduct.count = shoppingCartProduct.count + 1;
       }
       return shoppingCartProduct
     })
