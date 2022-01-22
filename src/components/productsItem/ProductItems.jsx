@@ -15,7 +15,7 @@ export default class ProductItems extends Component {
         return (
             <div className="product__items">
                 <h2>Goods</h2>
-                {this.props.products.length ? this.props.products.map(product => <ProductItem productStore={product} addGoodsToCart={this.addGoodsToCart} />) : "Loading data..."}
+                {this.props.productsStoreItems.length ? this.props.productsStoreItems.map(product => <ProductItem productStore={product} addGoodsToCart={this.addGoodsToCart} />) : "Loading data..."}
             </div>
         )
     }

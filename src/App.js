@@ -1,15 +1,14 @@
+import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.scss';
 import Button from '@mui/material/Button';
 import ProductItems from './components/productsItem/ProductItems';
 import ShoppingCart from './components/shoppingCart/ShoppingCart';
-
-import React, { Component } from 'react';
-
 export default class App extends Component {
 
   constructor(props) {
     super(props);
+
     this.addGoodsToCart = this.addGoodsToCart.bind(this);
     this.onDeleteProduct = this.onDeleteProduct.bind(this);
     this.onDecrementCount = this.onDecrementCount.bind(this);
@@ -18,20 +17,10 @@ export default class App extends Component {
     this.state = {
       products: [],
       shoppingCart: []
+
     }
   }
 
-
-  // receiving data from API
-  componentDidMount() {
-    fetch('https://api.ifcityevent.com/products')
-      .then(response => response.json())
-      .then(response => this.setState({
-        products: response.map(item => {
-          return { ...item, isInShoppingCart: false, count: 1 }
-        })
-      }))
-  }
   // adding goods to shopping cart
   addGoodsToCart(productStore) {
     const productInCart = this.state.products.map(product => {
@@ -143,7 +132,7 @@ export default class App extends Component {
           <div className="store__inner">
             <h1>Darmits store</h1>
             <div className="store__flexbox">
-              <ProductItems products={this.state.products} addGoodsToCart={this.addGoodsToCart} />
+              <ProductItems productsStoreItems={this.state.products} addGoodsToCart={this.addGoodsToCart} />
               <ShoppingCart shoppingCartItems={this.state.shoppingCart} onDeleteProduct={this.onDeleteProduct}
                 onDecrementCount={this.onDecrementCount} onIncrementCount={this.onIncrementCount}
                 onClearAll={this.onClearAll} />
@@ -152,6 +141,17 @@ export default class App extends Component {
         </div>
       </div>
     );
+  }
+
+  // receiving data from API
+  componentDidMount() {
+    fetch('https://api.ifcityevent.com/products')
+      .then(response => response.json())
+      .then(response => this.setState({
+        products: response.map(item => {
+          return { ...item, isInShoppingCart: false, count: 1 }
+        })
+      }))
   }
 }
 
