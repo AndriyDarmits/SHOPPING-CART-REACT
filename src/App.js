@@ -17,8 +17,7 @@ export default class App extends Component {
     this.onClearAll = this.onClearAll.bind(this);
     this.state = {
       products: [],
-      shoppingCart: [],
-
+      shoppingCart: []
     }
   }
 
@@ -33,29 +32,19 @@ export default class App extends Component {
         })
       }))
   }
-
-  componentDidUpdate() {
-    // something has to be updated here
-  }
-
   // adding goods to shopping cart
-  addGoodsToCart(id) {
+  addGoodsToCart(productStore) {
     const productInCart = this.state.products.map(product => {
-      if (product.id === id) {
+      if (product.id === productStore.id) {
         // set true, if product is in shopping cart
         product.isInShoppingCart = true;
-
       }
       return product;
 
-    }).filter(product => product.id === id)
-
-
+    }).filter(product => product.id === productStore.id)
     this.setState({
-      ...this.state.products,
       shoppingCart: [...this.state.shoppingCart, ...productInCart]
     })
-
   }
 
   // deleting goods to shopping cart
@@ -70,8 +59,8 @@ export default class App extends Component {
     })
 
     this.setState({
-      products: productOutOfShoppingCart,
-      shoppingCart: changedShoppingCart,
+      products: [...productOutOfShoppingCart],
+      shoppingCart: [...changedShoppingCart],
     })
   }
 
@@ -83,7 +72,7 @@ export default class App extends Component {
         if (shoppingCartProduct.count <= 1) {
           shoppingCartProduct.count = 1;
         } else {
-          shoppingCartProduct.count = shoppingCartProduct.count - 1;
+          shoppingCartProduct.count--;
         }
 
       }
@@ -91,37 +80,55 @@ export default class App extends Component {
     })
 
     this.setState({
-      ...this.state.products,
-      shoppingCart: decrementCount
+      shoppingCart: [...decrementCount]
     })
+    /* this.setState((prevState) => ({
+      shoppingCart: prevState.shoppingCart.map(shoppingCartProduct => {
+        if (shoppingCartProduct.id === decrementedProduct.id) {
+          if (shoppingCartProduct.count <= 1) {
+            shoppingCartProduct.count = 1;
+          } else {
+            shoppingCartProduct.count--;
+          }
+        }
+        return shoppingCartProduct
+      })
+    })
+    ) */
   }
   // !! А ТУТ ПРОБЛЕМКА, ЧОМУСЬ ( COUNT ) ОНОВЛЮЄТЬСЯ І В STATE.PRODUCTS, I В SHOPPINGCART (НЕ РОЗУМІЮ ЧОМУ)
   // incrementing quantity
   onIncrementCount(incrementedProduct) {
     const incrementCount = this.state.shoppingCart.map(shoppingCartProduct => {
       if (shoppingCartProduct.id === incrementedProduct.id) {
-        shoppingCartProduct.count = shoppingCartProduct.count + 1;
+        shoppingCartProduct.count++;
       }
       return shoppingCartProduct
     })
 
     this.setState({
-      ...this.state.products,
-      shoppingCart: incrementCount
+      shoppingCart: [...incrementCount]
     })
 
+    /* this.setState((prevState) => ({
+      shoppingCart: prevState.shoppingCart.map(shoppingCartProduct => {
+        if (shoppingCartProduct.id === incrementedProduct.id) {
+          shoppingCartProduct.count++;
+        }
+        return shoppingCartProduct
+      })
+    })) */
   }
 
   // deleting all goods from shoppingCart
   onClearAll(isClearAll) {
-
     if (isClearAll) {
       const changeIsInShoppingCartState = this.state.products.map(product => {
         product.isInShoppingCart = false
         return product
       })
       this.setState({
-        products: changeIsInShoppingCartState,
+        products: [...changeIsInShoppingCartState],
         shoppingCart: []
       })
     }
@@ -136,7 +143,7 @@ export default class App extends Component {
           <div className="store__inner">
             <h1>Darmits store</h1>
             <div className="store__flexbox">
-              <ProductItems products={this.state.products} addGoodsToCart={this.addGoodsToCart} idDeleted={this.state.isDeleted} />
+              <ProductItems products={this.state.products} addGoodsToCart={this.addGoodsToCart} />
               <ShoppingCart shoppingCartItems={this.state.shoppingCart} onDeleteProduct={this.onDeleteProduct}
                 onDecrementCount={this.onDecrementCount} onIncrementCount={this.onIncrementCount}
                 onClearAll={this.onClearAll} />

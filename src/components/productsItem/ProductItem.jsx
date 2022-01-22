@@ -10,15 +10,15 @@ export default class ProductItem extends Component {
     }
 
     addGoodsToCart(e) {
-        this.props.addGoodsToCart(this.props.product.id)
+        this.props.addGoodsToCart(this.props.productStore)
     }
 
     render() {
         return (
             <div className="product__item">
-                <p>Name: {this.props.product.name}</p>
-                <p>Price: {this.props.product.price} uah.</p>
-                {this.props.product.isInShoppingCart ?
+                <p>Name: {this.props.productStore.name}</p>
+                <p>Price: {this.props.productStore.price} uah.</p>
+                {this.props.productStore.isInShoppingCart ?
                     <p>In the shopping cart=)</p> :
                     <IconButton onClick={this.addGoodsToCart} color="primary" aria-label="add to shopping cart">
                         <AddShoppingCartIcon />

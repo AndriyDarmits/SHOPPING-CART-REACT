@@ -8,14 +8,14 @@ export default class ProductItems extends Component {
         this.addGoodsToCart = this.addGoodsToCart.bind(this)
     }
 
-    addGoodsToCart(id) {
-        this.props.addGoodsToCart(id)
+    addGoodsToCart(productStore) {
+        this.props.addGoodsToCart(productStore)
     }
     render() {
         return (
             <div className="product__items">
                 <h2>Goods</h2>
-                {this.props.products.length ? this.props.products.map(product => <ProductItem product={product} addGoodsToCart={this.addGoodsToCart} />) : "Loading data..."}
+                {this.props.products.length ? this.props.products.map(product => <ProductItem productStore={product} addGoodsToCart={this.addGoodsToCart} />) : "Loading data..."}
             </div>
         )
     }

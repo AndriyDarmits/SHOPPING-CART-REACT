@@ -15,29 +15,26 @@ export default class ShoppingCartItems extends Component {
     }
 
     deleteProduct() {
-        this.props.onDeleteProduct(this.props.product)
+        this.props.onDeleteProduct(this.props.productCart)
     }
 
     decrementCount() {
-        this.props.onDecrementCount(this.props.product)
+        this.props.onDecrementCount(this.props.productCart)
     }
     incrementCount() {
-        this.props.onIncrementCount(this.props.product)
+        this.props.onIncrementCount(this.props.productCart)
     }
 
     render() {
         return (
-
             <div className="shoppingCart__item">
-                <p>Name: {this.props.product.name}</p>
-                <p>Price: {this.props.product.price} uah.</p>
+                <p>Name: {this.props.productCart.name}</p>
+                <p>Price: {this.props.productCart.price} uah.</p>
                 <p className="quantity">
                     <span>Quantity:</span>
                     <RemoveIcon onClick={this.decrementCount} />
-                    {/* <span className="shoppingCart__item--dec" >&#x2212;</span> */}
-                    <span className="count"> {this.props.product.count} </span>
+                    <span className="count"> {this.props.productCart.count} </span>
                     <AddIcon onClick={this.incrementCount} />
-                    {/* <span className="shoppingCart__item--inc" >&#43;</span> */}
                 </p>
                 <IconButton onClick={this.deleteProduct} aria-label="delete">
                     <DeleteIcon />
