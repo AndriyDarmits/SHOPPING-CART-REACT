@@ -23,16 +23,21 @@ export default class App extends Component {
 
   // adding goods to shopping cart
   addGoodsToCart(productStore) {
-    const productInCart = this.state.products.map(product => {
+
+    // !!! тут десь баг, думаю що створюється референс.. але як ?????????
+    /* const productInCart = this.state.products.map(product => {
       if (product.id === productStore.id) {
         // set true, if product is in shopping cart
         product.isInShoppingCart = true;
       }
       return product;
-
     }).filter(product => product.id === productStore.id)
+ */
+    // set true, if product is in shopping cart
+    productStore.isInShoppingCart = true;
+    const cloneProductStore = { ...productStore }
     this.setState({
-      shoppingCart: [...this.state.shoppingCart, ...productInCart]
+      shoppingCart: [...this.state.shoppingCart, cloneProductStore]
     })
   }
 
@@ -60,8 +65,10 @@ export default class App extends Component {
       if (shoppingCartProduct.id === decrementedProduct.id) {
         if (shoppingCartProduct.count <= 1) {
           shoppingCartProduct.count = 1;
+
         } else {
           shoppingCartProduct.count--;
+          shoppingCartProduct.price -= this.state.products.find(el => el.id === decrementedProduct.id).price
         }
 
       }
@@ -71,19 +78,6 @@ export default class App extends Component {
     this.setState({
       shoppingCart: [...decrementCount]
     })
-    /* this.setState((prevState) => ({
-      shoppingCart: prevState.shoppingCart.map(shoppingCartProduct => {
-        if (shoppingCartProduct.id === decrementedProduct.id) {
-          if (shoppingCartProduct.count <= 1) {
-            shoppingCartProduct.count = 1;
-          } else {
-            shoppingCartProduct.count--;
-          }
-        }
-        return shoppingCartProduct
-      })
-    })
-    ) */
   }
   // !! А ТУТ ПРОБЛЕМКА, ЧОМУСЬ ( COUNT ) ОНОВЛЮЄТЬСЯ І В STATE.PRODUCTS, I В SHOPPINGCART (НЕ РОЗУМІЮ ЧОМУ)
   // incrementing quantity
@@ -91,6 +85,7 @@ export default class App extends Component {
     const incrementCount = this.state.shoppingCart.map(shoppingCartProduct => {
       if (shoppingCartProduct.id === incrementedProduct.id) {
         shoppingCartProduct.count++;
+        shoppingCartProduct.price += this.state.products.find(el => el.id === incrementedProduct.id).price
       }
       return shoppingCartProduct
     })
@@ -98,15 +93,6 @@ export default class App extends Component {
     this.setState({
       shoppingCart: [...incrementCount]
     })
-
-    /* this.setState((prevState) => ({
-      shoppingCart: prevState.shoppingCart.map(shoppingCartProduct => {
-        if (shoppingCartProduct.id === incrementedProduct.id) {
-          shoppingCartProduct.count++;
-        }
-        return shoppingCartProduct
-      })
-    })) */
   }
 
   // deleting all goods from shoppingCart

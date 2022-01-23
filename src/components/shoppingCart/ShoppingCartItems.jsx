@@ -11,6 +11,7 @@ export default class ShoppingCartItems extends Component {
         this.deleteProduct = this.deleteProduct.bind(this)
         this.decrementCount = this.decrementCount.bind(this)
         this.incrementCount = this.incrementCount.bind(this)
+
     }
 
     deleteProduct() {

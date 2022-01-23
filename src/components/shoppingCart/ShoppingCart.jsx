@@ -44,7 +44,7 @@ export default class ShoppingCart extends Component {
                                     Clear all
                                 </Button>
                                 <span>Total:{(this.props.shoppingCartItems.reduce((productPrev, productCurrent) => {
-                                    return productPrev + productCurrent.price * productCurrent.count
+                                    return productPrev + productCurrent.price
                                 }, 0)).toFixed(2)} uah.</span>
                             </div></>
                         :

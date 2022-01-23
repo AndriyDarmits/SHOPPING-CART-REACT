@@ -31,21 +31,22 @@ p{
         
 
     .shoppingCart__items{
+        
         .clearAll__btn{
-                margin-right: 10px;
+            margin-right: 10px;
             }
         .shoppingCart__item{
-            border: 1px solid #000;
+        
             margin-bottom: 10px;
+            background-color: rgba(22, 79, 105, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgb(7, 28, 34);
+            height: 120px;
            /*  &--inc,
             &--dec{
                 cursor: pointer;
             } */
-            
-            
             p{
-        
-                
                 span{
                     font-size: 16px;
                 }
@@ -62,8 +63,12 @@ p{
 }
 
 .product__item{
-    border: 1px solid #000;
     margin-bottom: 10px;
+    background-color: rgba(110, 136, 148, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(7, 28, 34);
+    height: 120px;
+
 }
 
 
@@ -71,7 +76,7 @@ p{
     display: flex;
 }
 .count{
-    background: rgb(193, 236, 252);
+    background: rgb(126, 200, 226);
     width: 20px;
     text-align: center;
     border-radius: 5px;
