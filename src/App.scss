@@ -56,6 +56,17 @@ p {
                 border-radius: 10px;
                 box-shadow: 0 0 10px rgb(7, 28, 34);
                 height: 120px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .shoppingCart__info {
+                    margin-left: 10px;
+                }
+
+                .shoppingCart__btnDelete {
+                    margin-right: 20px;
+                }
 
                 /*  &--inc,
             &--dec{

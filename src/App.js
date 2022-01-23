@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.scss';
-import Button from '@mui/material/Button';
 import ProductItems from './components/productsItem/ProductItems';
 import ShoppingCart from './components/shoppingCart/ShoppingCart';
 export default class App extends Component {
@@ -36,9 +34,8 @@ export default class App extends Component {
     // !FIXING
     // set true, if product is in shopping cart
     productStore.isInShoppingCart = true;
-    const cloneProductStore = { ...productStore }
     this.setState({
-      shoppingCart: [...this.state.shoppingCart, cloneProductStore]
+      shoppingCart: [...this.state.shoppingCart, { ...productStore }]
     })
   }
 
@@ -66,12 +63,10 @@ export default class App extends Component {
       if (shoppingCartProduct.id === decrementedProduct.id) {
         if (shoppingCartProduct.count <= 1) {
           shoppingCartProduct.count = 1;
-
         } else {
           shoppingCartProduct.count--;
           shoppingCartProduct.price -= this.state.products.find(el => el.id === decrementedProduct.id).price
         }
-
       }
       return shoppingCartProduct
     })

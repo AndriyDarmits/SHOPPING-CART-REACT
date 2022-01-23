@@ -13,6 +13,7 @@ export default class ShoppingCart extends Component {
         this.onDecrementCount = this.onDecrementCount.bind(this)
         this.onIncrementCount = this.onIncrementCount.bind(this)
         this.clearAll = this.clearAll.bind(this)
+        this.buyProduct = this.buyProduct.bind(this)
     }
 
     onDeleteProduct(deleteProduct) {
@@ -28,6 +29,10 @@ export default class ShoppingCart extends Component {
 
     clearAll() {
         this.props.onClearAll(true)
+    }
+
+    buyProduct() {
+        alert(JSON.stringify(this.props.shoppingCartItems))
     }
 
 
@@ -47,7 +52,7 @@ export default class ShoppingCart extends Component {
                                     </Button>
                                 </span>
                                 <span className="buyAll__product">
-                                    <Button variant="contained" endIcon={<SendIcon />} size="small">
+                                    <Button variant="contained" endIcon={<SendIcon />} size="small" onClick={this.buyProduct}>
                                         Buy
                                     </Button>
                                 </span>

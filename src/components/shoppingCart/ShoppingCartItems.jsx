@@ -11,7 +11,6 @@ export default class ShoppingCartItems extends Component {
         this.deleteProduct = this.deleteProduct.bind(this)
         this.decrementCount = this.decrementCount.bind(this)
         this.incrementCount = this.incrementCount.bind(this)
-
     }
 
     deleteProduct() {
@@ -28,17 +27,21 @@ export default class ShoppingCartItems extends Component {
     render() {
         return (
             <div className="shoppingCart__item">
-                <p>Name: {this.props.productCart.name}</p>
-                <p>Price: {this.props.productCart.price} uah.</p>
-                <p className="quantity">
-                    <span>Quantity:</span>
-                    <RemoveIcon onClick={this.decrementCount} />
-                    <span className="count"> {this.props.productCart.count} </span>
-                    <AddIcon onClick={this.incrementCount} />
-                </p>
-                <IconButton onClick={this.deleteProduct} aria-label="delete">
-                    <DeleteIcon />
-                </IconButton>
+                <div className="shoppingCart__info">
+                    <p>Name: {this.props.productCart.name}</p>
+                    <p>Price: {this.props.productCart.price} uah.</p>
+                    <p className="quantity">
+                        <span>Quantity:</span>
+                        <RemoveIcon onClick={this.decrementCount} />
+                        <span className="count"> {this.props.productCart.count} </span>
+                        <AddIcon onClick={this.incrementCount} />
+                    </p>
+                </div>
+                < div className="shoppingCart__btnDelete">
+                    <IconButton onClick={this.deleteProduct} aria-label="delete">
+                        <DeleteIcon />
+                    </IconButton>
+                </div>
 
             </div>
 
