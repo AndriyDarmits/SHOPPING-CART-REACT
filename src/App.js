@@ -33,6 +33,7 @@ export default class App extends Component {
       return product;
     }).filter(product => product.id === productStore.id)
  */
+    // !FIXING
     // set true, if product is in shopping cart
     productStore.isInShoppingCart = true;
     const cloneProductStore = { ...productStore }

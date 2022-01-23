@@ -16,13 +16,18 @@ export default class ProductItem extends Component {
     render() {
         return (
             <div className="product__item">
-                <p>Name: {this.props.productStore.name}</p>
-                <p>Price: {this.props.productStore.price} uah.</p>
-                {this.props.productStore.isInShoppingCart ?
-                    <p>In the shopping cart=)</p> :
-                    <IconButton onClick={this.addGoodsToShoppingCart} color="primary" aria-label="add to shopping cart">
-                        <AddShoppingCartIcon />
-                    </IconButton>}
+                <div className="products__info">
+                    <p>Name: {this.props.productStore.name}</p>
+                    <p>Price: {this.props.productStore.price} uah.</p>
+                </div>
+                <div className="addToCart__btn">
+                    {this.props.productStore.isInShoppingCart ?
+                        <p className="productInCart__notific">In the shopping cart=)</p> :
+                        <IconButton onClick={this.addGoodsToShoppingCart} color="primary" aria-label="add to shopping cart">
+                            <AddShoppingCartIcon />
+                        </IconButton>}
+                </div>
+
             </div>
         );
     }

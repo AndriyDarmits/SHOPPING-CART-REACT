@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ShoppingCartItems from './ShoppingCartItems';
 import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
 
 
 export default class ShoppingCart extends Component {
@@ -39,16 +40,23 @@ export default class ShoppingCart extends Component {
                         <>{this.props.shoppingCartItems.map((product) => <ShoppingCartItems productCart={product} onDeleteProduct={this.onDeleteProduct}
                             onDecrementCount={this.onDecrementCount} onIncrementCount={this.onIncrementCount} />
                         )}
-                            <div className="productsAmount" >
-                                <Button variant="contained" startIcon={<DeleteIcon />} onClick={this.clearAll} size="small">
-                                    Clear all
-                                </Button>
-                                <span>Total:{(this.props.shoppingCartItems.reduce((productPrev, productCurrent) => {
+                            <div className="products__checkout" >
+                                <span className="deleteAll__product">
+                                    <Button variant="contained" startIcon={<DeleteIcon />} onClick={this.clearAll} size="small">
+                                        Clear all
+                                    </Button>
+                                </span>
+                                <span className="buyAll__product">
+                                    <Button variant="contained" endIcon={<SendIcon />} size="small">
+                                        Buy
+                                    </Button>
+                                </span>
+                                <span >Total:{(this.props.shoppingCartItems.reduce((productPrev, productCurrent) => {
                                     return productPrev + productCurrent.price
                                 }, 0)).toFixed(2)} uah.</span>
                             </div></>
                         :
-                        <div>The shopping cart is empty...</div>}
+                        <div className="cartEmpty__notific">The shopping cart is empty...</div>}
                 </div>
             </div >
         )
